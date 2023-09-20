@@ -24,5 +24,7 @@ sumDigits 0 = 0
 sumDigits 1 = 1
 sumDigits x = (x `mod` 10) + sumDigits(x `div` 10)
 
+-- updated code here
 magicNumber :: Int -> Int
-magicNumber x = sumDigits(sumDigits(x))
+magicNumber x = 
+    if x > 10 then magicNumber(sumDigits(x)) else x
