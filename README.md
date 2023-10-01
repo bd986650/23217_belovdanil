@@ -7,3 +7,4 @@
 ---
 # [2 Week](https://github.com/bd986650/23217_belovdanil/blob/main/2week.hs)
 ---
+# [3 Week](https://github.com/bd986650/23217_belovdanil/blob/main/3week.hs)
