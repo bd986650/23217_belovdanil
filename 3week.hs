@@ -31,3 +31,13 @@ checkAllEq (x:y:xs) = x == y && checkAllEq (y:xs)
 minDistance :: [(Double, Double)] -> Double
 minDistance points = minimum [distance p1 p2 | p1 <- points, p2 <- points, p1 /= p2]
 
+-- Task 5
+compute :: [String] -> Double -> Double
+compute [] p = p
+compute (instr:r) p
+    | instr == "inc" = compute r (p + 1.0)
+    | instr == "dec" = compute r (p - 1.0)
+    | instr == "double" = compute r (p * 2.0)
+    | instr == "sqrt" = compute r (sqrt p)
+    | instr == "halveIfPositive" = if p > 0 then compute r (p / 2.0) else compute r p
+    | otherwise = compute r p
