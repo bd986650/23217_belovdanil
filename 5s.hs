@@ -49,14 +49,6 @@ cleaner' :: [String] -> [String]
 cleaner' = filter (`elem` ["inc", "dec", "double", "sqrt", "halveIfPositive"])
 
 -- Task 5
--- Without foldr
-optimizer :: [String] -> [String]
-optimizer [] = []
-optimizer (x:xs)
-    | x == "inc" && "dec" `elem` xs = optimizer xs
-    | x == "dec" && "inc" `elem` xs = optimizer xs
-    | otherwise = x : optimizer xs
-
 -- With foldr
 optimizer' :: [String] -> [String]
 optimizer' = foldr optimize []
