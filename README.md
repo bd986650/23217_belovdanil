@@ -10,3 +10,5 @@
 # [3 Week / 4 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/4s.hs)
 ---
 # [4 Week / 5 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/5s.hs)
+---
+# [5 Week / 6 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/6s.hs)
