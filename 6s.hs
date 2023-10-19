@@ -43,6 +43,6 @@ sim :: Eq a => [a] -> BinaryRelation a -> Bool
 sim m rel = all (\(x, y) -> (y, x) `elem` rel) rel
 
 -- Транзитивно ли бинарное отношение на множестве m
---                m           rel
+--                   m           rel
 -- trans :: Eq a => [a] -> BinaryRelation a -> Bool
 -------------
