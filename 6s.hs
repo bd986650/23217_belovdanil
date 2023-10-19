@@ -43,6 +43,11 @@ sim :: Eq a => [a] -> BinaryRelation a -> Bool
 sim m rel = all (\(x, y) -> (y, x) `elem` rel) rel
 
 -- Транзитивно ли бинарное отношение на множестве m
---                   m           rel
--- trans :: Eq a => [a] -> BinaryRelation a -> Bool
--------------
+--                m           rel
+trans :: Eq a => [a] -> BinaryRelation a -> Bool
+trans m rel = all isTransitive [(x, y, z) | x <- m, y <- m, z <- m]
+  where
+    isTransitive (x, y, z) = not ((x, y) `elem` rel && (y, z) `elem` rel) || (x, z) `elem` rel
+
+-- поч это не работает ((((((((((((
+-- trans m rel = all (\(x, y) -> all (\(z, w) -> (x, y) `elem` rel && (y, z) `elem` rel && (x, z) `elem` rel) rel) rel
