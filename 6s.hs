@@ -27,7 +27,7 @@ for (counter, acc) inc condition body
 
 -- Task 4
 decartMultiply :: [a] -> [b] -> [(a, b)]
-decartMultiply list1 list2 = [(p1, p2) | p1 <- list1, p2 <- list2]
+decartMultiply list1 list2 = [(x, y) | x <- list1, y <- list2]
 
 -- Task 5
 type BinaryRelation a = Eq a => [(a, a)]
