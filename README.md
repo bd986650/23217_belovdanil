@@ -15,4 +15,5 @@
 ---
 # [6-7 Week / 7-8 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/7-8s.hs)
 ---
-# [8 Week / 9 Sem]
+# [8 Week / 9 Sem](https://github.com/bd986650/23217_belovdanil/tree/main/9S)
+---
