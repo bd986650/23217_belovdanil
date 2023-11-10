@@ -15,19 +15,9 @@ m1 = makeMatrix (3, 3) example1 -- m1 :: Matrix
 m2 = makeMatrix (2, 2) example2 -- m2 :: Matrix
 
 -- Task 1
-
-------------
--- эту функцию взял с гпт, потому что мое решение не работало нормально(тогда и последущие таски бы слетели изза этой фукнции)
--- в гугле и на гитхабе 0 инфы полезной было про создание матриц на хаскеле (((
 --            matrix size      ((i, j), element)      result
 makeMatrix :: (Int, Int) -> [((Int, Int), Double)] -> Matrix
-makeMatrix (m, n) list =
-  let bounds = ((0, 0), (m - 1, n - 1))
-      default_value = 0.0
-      list' = [((i, j), val) | ((i, j), val) <- list, i >= 0 && i < m, j >= 0 && j < n]
-      arr = array bounds (list' ++ [((i, j), default_value) | i <- [0..m-1], j <- [0..n-1], not ((i, j) `elem` map fst list)])
-  in Matrix arr
-------------
+makeMatrix size list = array ((1, 1),size) list
 
 (!!!) :: Matrix -> (Int, Int) -> Double
 (Matrix arr) !!! index = arr ! index
