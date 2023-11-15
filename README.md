@@ -17,3 +17,4 @@
 ---
 # [8 Week / 9 Sem](https://github.com/bd986650/23217_belovdanil/tree/main/9S)
 ---
+# [9 Week / 10 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/10s.hs)
