@@ -69,7 +69,7 @@ findMax (Node _ right _ _) = findMax right
 
 -- Task 4
 findAny :: Ord a => (a -> Bool) -> BinTree a -> Maybe a
-findAny _ Nil = error "empty"
+findAny _ Nil = Nothing
 findAny predicate (Node left right value _)
     | predicate value = Just value
     | not (predicate value) = findAny predicate left
