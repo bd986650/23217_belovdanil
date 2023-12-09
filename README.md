@@ -23,5 +23,3 @@
 ---
 # [11-12 Week / 12-13 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/12-13s.hs)
 ---
-# [13-14 Week / 14-15 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/14-15s.hs)
----
