@@ -65,7 +65,12 @@ findMax (Node _ Nil value _) = Just value
 findMax (Node _ right _ _) = findMax right
 
 -- Task 3
-----------------
+inOrder :: BinTree a -> [a]
+inOrder Nil = []
+inOrder (Node left right value count) = inOrder left ++ [value] ++ inOrder right
+
+treeSort :: Ord a => BinTree a -> [a]
+treeSort = inOrder
 
 -- Task 4
 findAny :: Ord a => (a -> Bool) -> BinTree a -> Maybe a
