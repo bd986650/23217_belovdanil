@@ -64,6 +64,8 @@ findMax Nil = Nothing
 findMax (Node _ Nil value _) = Just value
 findMax (Node _ right _ _) = findMax right
 
+-- == Доделал 4 и сделал 3
+
 -- Task 3
 inOrder :: BinTree a -> [a]
 inOrder Nil = []
@@ -75,8 +77,4 @@ treeSort = inOrder
 -- Task 4
 findAny :: Ord a => (a -> Bool) -> BinTree a -> Maybe a
 findAny _ Nil = Nothing
-findAny predicate (Node left right value _)
-    | predicate value = Just value
-    | not (predicate value) = findAny predicate left
-    | otherwise = findAny predicate right
-
+findAny predicate tree = foldl (\acc node -> if predicate node then Just node else acc) Nothing (treeSort tree)
