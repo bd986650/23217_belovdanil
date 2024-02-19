@@ -27,4 +27,6 @@
 ---
 # №2
 ---
-# [1 Week / 1 sem](https://github.com/bd986650/23217_belovdanil/blob/main/2-1s.hs)
+# [1 sem](https://github.com/bd986650/23217_belovdanil/blob/main/2-1s.hs)
+---
+# [2 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/2-2s.hs)
