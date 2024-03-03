@@ -9,7 +9,7 @@
 ---
 # [2 homework](https://github.com/bd986650/23217_belovdanil/blob/main/2-2s.hs)
 ---
-# [3 homework](https://github.com/bd986650/23217_belovdanil/blob/main/3-2s.hs)
+# [3 homework](https://github.com/bd986650/23217_belovdanil/blob/main/2-3s.hs)
 ---
 # №1
 ---
