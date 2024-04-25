@@ -1,1 +1,137 @@
+Глава 1: Простые запросы, сортировка, операции с набором, простая агрегация
+1.1. Получить все уникальные компании
+1.2. Получить общее количество компаний
+1.3. Получить все уникальные товары в категории "Продукты питания"
+1.4. Получить список всех уникальных компаний, названия которых начинаются с буквы А или В, отсортированных в алфавитном порядке
+1.5. Получить все уникальные конечные продукты (т.е. изделия, которые нигде не используются в качестве сырья).
+1.6. Приобретите все уникальные изделия, которые невозможно было изготовить
+1.7. Приобретайте все уникальные изделия, которые сочетают в себе как материалы, так и изделия из
+1.8. Узнайте минимальные и максимальные цены на бумагу
+1.9. Получите среднюю цену и дисперсионную цену мяса, округленные до одного десятичного знака.
 
+1.1
+SELECT DISTINCT COMPANY FROM MANUFACTURER;
+
+1.2
+SELECT COUNT(DISTINCT COMPANY) FROM MANUFACTURER;
+
+1.3
+SELECT WARE
+FROM CATEGORY
+WHERE CLASS LIKE 'FOOD';
+
+1.4
+SELECT DISTINCT COMPANY   
+FROM MANUFACTURER 
+WHERE COMPANY like 'A%' OR COMPANY like 'B%'
+ORDER BY COMPANY ASC
+ 
+1.5
+-- SELECT WARE  FROM PRODUCT
+-- EXCEPT
+-- SELECT WARE FROM MATERIAL 
+
+1.6
+-- SELECT WARE FROM MATERIAL
+-- EXCEPT
+-- SELECT ware from PRODUCT
+
+1.7
+— SELECT WARE FROM MATERIAL
+— INTERSECT
+— SELECT ware from PRODUCT
+
+1.8
+-- SELECT MIN(PRICE) , MAX(PRICE) 
+-- FROM PRODUCT
+-- WHERE WARE LIKE 'PAPER';
+
+1.9
+-- SELECT
+-- ROUND(AVG(PRICE),1) , 
+-- ROUND((AVG(PRICE*PRICE)) - (AVG(PRICE)*AVG(PRICE)),1)
+-- FROM PRODUCT WHERE WARE LIKE 'Meat';
+
+———————————————
+Глава 2. Присоединяйтесь
+2.1. Найдите все уникальные компании, производящие питьевую воду, в алфавитном порядке.
+2.2. Найдите все компании, производящие товары в категории Сыроедение. Результат должен содержать уникальные пары
+компаний и производимых ими изделий из данной категории и должен быть отсортирован сначала по изделию, а
+затем по названию компании.
+2.3. Получите все уникальные изделия в алфавитном порядке, которые могут быть изготовлены из изделий в категории минералов.
+2.4. Найдите все уникальные компании, производящие товары как из категории топлива, так и из категории продуктов питания. Используйте соответствующую
+операцию set в запросе.
+2.5. Перепишите предыдущий запрос, не используя операции set. Дополните результат товарами из обеих
+категорий. Допустимо получение нескольких строк для компаний, производящих несколько товаров из любой
+указанной категории, но строки должны быть уникальными по результату.
+2.6. Расположите в алфавитном порядке все компании, производящие как минимум 2 разных продукта из одной
+категории.
+2.7. Расположите в алфавитном порядке все уникальные продукты, которые могут быть изготовлены из чего угодно, кроме продуктов из категории
+Минералы.
+2.8. Расположите все уникальные компании в алфавитном порядке, реализующие производственные цепочки. Производственная
+цепочка - это, по крайней мере, две последующие спецификации, когда в первой спецификации производятся изделия, которые используются в качестве материала
+во второй спецификации. Примером такой цепочки с точки зрения товаров является Зерно->Мясная корова->Мясо.
+2.9. Измените запрос из предыдущего задания, чтобы показать также производственную цепочку в разрезе изделий (3 из
+них) с дополнительной сортировкой по среднему (это и материал, и продукт для данной компании).
+
+2.1
+SELECT DISTINCT MANUFACTURER.COMPANY AS COMPANY
+        --PRODUCT.WARE AS PRODUCT
+FROM MANUFACTURER
+INNER JOIN PRODUCT 
+ON MANUFACTURER.BILL_ID = PRODUCT.BILL_ID AND PRODUCT.WARE = 'Drinking water';
+
+2.2
+SELECT DISTINCT --CATEGORY.WARE AS PRODUCT,
+        PRODUCT.WARE AS RAW_PRODUCT,
+        MANUFACTURER.COMPANY AS COMPANY
+FROM CATEGORY
+INNER JOIN PRODUCT
+ON CATEGORY.WARE = PRODUCT.WARE AND CATEGORY.CLASS = 'Raw food'
+INNER JOIN MANUFACTURER
+ON MANUFACTURER.BILL_ID = PRODUCT.BILL_ID;
+
+2.3
+SELECT DISTINCT --CATEGORY.WARE AS MINERAL,
+        --MATERIAL.WARE AS MATERIAL,
+        PRODUCT.WARE AS PRODUCT
+FROM CATEGORY
+INNER JOIN MATERIAL
+ON CATEGORY.WARE = MATERIAL.WARE AND CATEGORY.CLASS = 'Mineral'
+INNER JOIN PRODUCT
+ON MATERIAL.BILL_ID = PRODUCT.BILL_ID
+ORDER BY PRODUCT.WARE ASC;
+
+2.4
+SELECT DISTINCT --CATEGORY.WARE AS CATEGORIES,
+        --MATERIAL.WARE AS MATERIAL,
+        --PRODUCT.WARE AS PRODUCT,
+        MANUFACTURER.COMPANY AS COMPANY
+FROM CATEGORY
+INNER JOIN MATERIAL
+ON CATEGORY.WARE = MATERIAL.WARE AND CATEGORY.CLASS = 'Fuel' OR CATEGORY.CLASS = 'Food'
+INNER JOIN PRODUCT
+ON MATERIAL.BILL_ID = PRODUCT.BILL_ID
+INNER JOIN MANUFACTURER
+ON PRODUCT.BILL_ID = MANUFACTURER.BILL_ID;
+
+
+2.5 ---
+
+2.6
+SELECT DISTINCT--CATEGORY.WARE AS CATEGORY,
+    --MATERIAL.WARE AS MATERIAL,
+    --PRODUCT.WARE AS PRODUCT,
+    MANUFACTURER.COMPANY
+FROM CATEGORY
+INNER JOIN MATERIAL
+ON CATEGORY.WARE = MATERIAL.WARE
+INNER JOIN PRODUCT
+ON MATERIAL.BILL_ID = PRODUCT.BILL_ID
+INNER JOIN MANUFACTURER
+ON MANUFACTURER.BILL_ID = PRODUCT.BILL_ID
+WHERE PRODUCT.BILL_ID IN (
+      SELECT BILL_ID
+      FROM PRODUCT
+      GROUP BY BILL_ID
+      HAVING COUNT(DISTINCT WARE) >= 2);
