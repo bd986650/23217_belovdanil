@@ -11,6 +11,7 @@
 ---
 # [3 homework](https://github.com/bd986650/23217_belovdanil/blob/main/2-3s.hs)
 ---
+# [SQL HomeWork](https://github.com/bd986650/23217_belovdanil/blob/main/sqlhw.txt)
 # №1
 ---
 # [1 Week / 2 Sem](https://github.com/bd986650/23217_belovdanil/blob/main/2s.hs)
