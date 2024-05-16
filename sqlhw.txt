@@ -210,7 +210,24 @@ SELECT MANUFACTURER.COMPANY, COUNT(DISTINCT PRODUCT.WARE) AS CNT_PROD, COUNT(DIS
 4.8. Покажите все компании с наибольшим количеством различных товаров, которые они производят, и их списки
 товаров в алфавитном порядке.
 
+4.1
+SELECT WARE
+FROM SELECT WARE, round(avg(PRICE), 2) as Av
+      FROM PRODUCT
+      GROUP by WARE
+      ORDER by Av DESC)
+LIMIT 1
 
+
+4.2.
+SELECT WARE, CLASS 
+FROM (
+    SELECT PRODUCT.WARE, CATEGORY.CLASS
+    FROM PRODUCT
+    INNER JOIN CATEGORY 
+  ON CATEGORY.WARE = PRODUCT.WARE
+) 
+GROUP BY CLASS;
 
 
 ———————————————
@@ -221,3 +238,6 @@ SELECT MANUFACTURER.COMPANY, COUNT(DISTINCT PRODUCT.WARE) AS CNT_PROD, COUNT(DIS
 категории “Минералы”, а продукт - к категории “Материалы”. Результат должен быть упорядочен по bill_id и
 ограничен первыми 50 тройками. Напишите план как можно более эффективным.
 5.3. Для запроса в задаче 2.8 напишите план как можно более эффективным.
+
+
+
